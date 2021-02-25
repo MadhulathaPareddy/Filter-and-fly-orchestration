@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<head>
+    <title>Team stack</title>
+     <link rel="stylesheet" href="style.css"> 
+</head>
+
+<style>
+    td{
+    border: 1px solid black;
+}
+table{
+    border: 2px solid black;
+}
+</style>
+<body onload="mycustomFun()">
+<div class='introText'>
+   <b> FILTER AND FLY </b>
+</div>
+<div class='desctext'>
+    we have collected data from data.census.gov for year 2018, all you need to do is filter it and fly with your csv file
+</div>
+<div class='contentdiv'>
+<select id="selectState" onchange="getCounties()">
+    <option value="ignore">Choose State</option>
+</select>
+<select id="selectCounty" >
+    <option  value="ignore">Choose County</option>
+</select>
+<select id="selectAge" >
+    <option value="ignore">Choose Age group</option>
+</select>
+<select id="selectGender" >
+    <option value = "ignore">Choose Gender</option>
+    <option value = "1">Male</option>
+    <option value = "2">Female</option>
+    <option value = "0">Other</option>
+</select>
+
+<button class='submitbutton' onclick="getData()">Submit</button>
+<button class ='downloadbutton' onclick="downloadData()">Download data</button>
+<button class ='downloadbutton' onclick="testing()">testing</button>
+
+<table id="table">
+    <tbody></tbody>
+</table>
+</div>           
+<!-- <!.................. END OF CONTENTDIV> -->
+<div class="frame">
+    <div class="plane-container">
+    <a href="http://customer.io/" target="_blank">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    width="1131.53px" height="379.304px" viewBox="0 0 1131.53 379.304" enable-background="new 0 0 1131.53 379.304"
+    xml:space="preserve" class="plane">
+    <polygon fill="#D8D8D8" points="72.008,0 274.113,140.173 274.113,301.804 390.796,221.102 601.682,367.302 1131.53,0.223  "/>
+    <polygon fill="#C4C4C3" points="1131.53,0.223 274.113,140.173 274.113,301.804 390.796,221.102   "/>
+    </svg></a>
+    
+    </div>
+    </div>
+    <div class="clouds">    
+         <!-- <!........................div for cloud webkit key reference > -->
+    
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="762px"
+    height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331" xml:space="preserve" class="cloud big front slowest">
+    <path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+    c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+    C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+    S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z"/>
+    </svg>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="762px"
+    height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331" xml:space="preserve" class="cloud distant smaller">
+    <path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+    c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+    C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+    S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z"/>
+    </svg>
+    
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="762px"
+    height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331" xml:space="preserve" class="cloud small slow">
+    <path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+    c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+    C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+    S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z"/>
+    </svg>
+    
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="762px"
+    height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331" xml:space="preserve" class="cloud distant super-slow massive">
+    <path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+    c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+    C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+    S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z"/>
+    </svg>
+    
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="762px"
+    height="331px" viewBox="0 0 762 331" enable-background="new 0 0 762 331" xml:space="preserve" class="cloud slower">
+    <path fill="#FFFFFF" d="M715.394,228h-16.595c0.79-5.219,1.201-10.562,1.201-16c0-58.542-47.458-106-106-106
+    c-8.198,0-16.178,0.932-23.841,2.693C548.279,45.434,488.199,0,417.5,0c-84.827,0-154.374,65.401-160.98,148.529
+    C245.15,143.684,232.639,141,219.5,141c-49.667,0-90.381,38.315-94.204,87H46.607C20.866,228,0,251.058,0,279.5
+    S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715.394,228z"/>
+    </svg>
+    
+    </div> 
+    <!-- <!..................................................... div cloud ends here> -->
+
+
+<!-- <! ###################################### JAVASCRIPT STARTS FROM HERE #########################################> -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    const HttpClient = function () {
+        this.get = function (aUrl, aCallback) {
+            const anHttpRequest = new XMLHttpRequest();
+            anHttpRequest.onreadystatechange = function () {
+                if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                    aCallback(anHttpRequest.responseText);
+            }
+
+            anHttpRequest.open("GET", aUrl, true);
+            anHttpRequest.send(null);
+        }
+    };
+    // below function executes everytime a page loads.
+    function mycustomFun(){
+        const client = new HttpClient();
+        client.get('http://localhost:3010/get-states', function(response) {
+            // do something with response
+           var response = JSON.parse(response);
+            console.log(response);
+            console.log(response[0].state);
+            //by vishal
+            for(let i=0;i<response.length;i++){
+                 states.push(response[i].state);}
+                    console.log(states);
+                     for(let i=0;i<response.length;i++){
+                        sendobj.states.push({statename:'',counties:[]});//creating an object and pushing it to states array inside sendobj.
+                        sendobj.states[i].statename=response[i];// each statename is given a value.
+                    }
+                  
+                 //end vishal
+                 console.log(sendobj)
+            const select = document.getElementById("selectState");
+            for(let i = 0; i < response.length; i++) {
+                const opt = response[i].state;
+
+                const el = document.createElement("option");
+                el.text = opt;
+                el.value = opt;
+
+                select.add(el);
+            }
+            getAge();
+        });
+    }
+    function getCounties(){
+        let state = document.getElementById("selectState").value;
+    //alert(state);
+    const client = new HttpClient();
+        client.get('http://localhost:3010/get-counties/'+state, function(response) {
+            // do something with response
+            response = JSON.parse(response);
+            console.log(response)
+            const select = document.getElementById("selectCounty");
+            document.getElementById('selectCounty').options.length = 0;
+            let el = document.createElement("option");
+                el.text = 'Choose county';
+                el.value = 'ignore';
+                select.add(el);
+            for(let i = 0; i < response.length; i++) {
+                const opt = response[i].county;
+
+                const el = document.createElement("option");
+                el.text = opt;
+                el.value = opt;
+
+                select.add(el);
+            }});
+    }
+    function getAge(){
+        const client = new HttpClient();
+        client.get('http://localhost:3010/get-age', function(response) {
+            // do something with response
+            response = JSON.parse(response);
+            console.log(response)
+            const select = document.getElementById("selectAge");
+            for(let i = 0; i < response.length; i++) {
+                
+
+                const el = document.createElement("option");
+                el.text = response[i].Age_group;
+                el.value = response[i].Age_code;
+
+                select.add(el);
+            }});
+    }
+    async function getData(){
+        let state = document.getElementById("selectState").value;
+        if(state == "ignore")
+        alert("Please select state");
+        else{
+            state= state.replace(" ", "_");
+            let query = "select distinct state, county, population, age_group, gender_name from "+state+ " left join age_group on "+state+".Age=age_group.Age_code left join gender on gender.gender_id="+state+".Sex"
+            let andQuery = [];
+            let idsArray = ["selectCounty", "selectAge", "selectGender"];
+            for(let i = 0; i <idsArray.length;i++)
+            {
+                let data = document.getElementById(idsArray[i]).value;
+                if(data != "ignore")
+                {
+                    if(idsArray[i] == "selectCounty")
+                        andQuery.push(" county = '" + data + "'" )
+                    else if(idsArray[i] == "selectAge")
+                        andQuery.push(" age = " + data )
+                    else if(idsArray[i] == "selectGender")
+                        andQuery.push(" sex = " + data )
+                }
+            }
+            if(andQuery.length > 0)
+            {
+                query = query+" where "+andQuery.join(" and ")+" LIMIT 15"
+            }
+            else{
+                query = query+" LIMIT 15"
+            }
+            alert(query);
+    //         let formData = new FormData();
+    //         formData.append("query", query);
+      
+    //         let response = await fetch('http://localhost:3010/getData', {
+    //             method: 'POST',
+    //         body: formData
+    // });
+
+    // let result = await response.json();
+    // console.log(result)
+    $.post("http://localhost:3010/getData",
+    {
+      query: query
+    },
+    function(data,status){
+    //   alert("Data: " + data + "\nStatus: " + status);
+    console.log(data)
+    var t = "";
+$('#table tbody').text("");
+$('#table tbody').append("<tr><td>population</td><td>state</td><td>county</td><td>age_group</td><td>gender</td></tr>");
+
+$.each(data, function(i, v) {
+    // console.log(v)
+   t += '<tr><td>'+v.population+'</td><td>'+v.state+'</td><td>'+v.county+'</td><td>'+v.age_group+'</td><td>'+v.gender_name+'</td></tr>';
+});
+console.log(t);
+$('#table tbody').append(t);
+    });
+        }
+    }
+
+    async function downloadData(){
+        let state = document.getElementById("selectState").value;
+        if(state == "ignore")
+        alert("Please select state");
+        else{
+            state= state.replace(" ", "_");
+            let query = "select distinct state, county, population, age_group, gender_name from "+state+ " left join age_group on "+state+".Age=age_group.Age_code left join gender on gender.gender_id="+state+".Sex"
+            let andQuery = [];
+            let idsArray = ["selectCounty", "selectAge", "selectGender"];
+            for(let i = 0; i <idsArray.length;i++)
+            {
+                let data = document.getElementById(idsArray[i]).value;
+                if(data != "ignore")
+                {
+                    if(idsArray[i] == "selectCounty")
+                        andQuery.push(" county = '" + data + "'" )
+                    else if(idsArray[i] == "selectAge")
+                        andQuery.push(" age = " + data )
+                    else if(idsArray[i] == "selectGender")
+                        andQuery.push(" sex = " + data )
+                }
+            }
+            if(andQuery.length > 0)
+            {
+                query = query+" where "+andQuery.join(" and ")
+            }
+
+    $.post("http://localhost:3010/download-data",
+    {
+      query: query
+    },
+    function(data,status){
+    //   alert("Data: " + data + "\nStatus: " + status);
+    console.log(data)
+    window.open(data.download_path);
+        });
+        }
+    }
+var states=[];
+var sendobj={
+    states:[
+   /*  {statename:'Alabama', counties:['1','2','3']},
+    {statename:'Alabama', counties:['1','2','3']} */
+ ]
+};//Main object to be posted to firebase
+    //function testing by vishal
+    async function testing(){
+        const client = new HttpClient();
+        client.get("http://localhost:3010/testing", function(response) {
+            // do something with response
+            console.log(response)
+            response = JSON.parse(response);
+            console.log("Iam from testing function......")
+            console.log(response);
+            });
+    }//end of testing function
+</script>
+</body>
+
